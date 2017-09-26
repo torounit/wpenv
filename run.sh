@@ -12,7 +12,7 @@ WP_VERSION=${2-latest}
 CONTAINER_NAME=${3-wpenv}
 
 docker pull miya0001/phpenv:$PHP_VERSION
-docker run -idt --name $CONTAINER_NAME --privileged -w /$(basename $(pwd)) --volume="$(pwd)":/$(basename $(pwd)):rw miya0001/phpenv:$PHP_VERSION "/bin/bash"
+docker run -idt --name $CONTAINER_NAME -u ubuntu --privileged -w /$(basename $(pwd)) --volume="$(pwd)":/$(basename $(pwd)):rw miya0001/phpenv:$PHP_VERSION "/bin/bash"
 
 # Init MySQL
 docker exec $CONTAINER_NAME sudo chown -R mysql:mysql /var/lib/mysql
